@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:produk/list_produk.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -11,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomLeft,
@@ -26,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _page() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(32.0),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,9 +39,16 @@ class _LoginPageState extends State<LoginPage> {
             ),
             _inputField('Username', usernameController),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             _inputField('Password', passwordController, isPassword: true),
+            const SizedBox(
+              height: 50,
+            ),
+            _loginbtn(),
+            const SizedBox(
+              height: 50,
+            ),
           ],
         ),
       ),
@@ -61,6 +71,36 @@ class _LoginPageState extends State<LoginPage> {
         focusedBorder: border,
       ),
       obscureText: isPassword,
+    );
+  }
+
+  Widget _loginbtn() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ListProduk(
+                title: 'lists',
+              ),
+            ));
+      },
+      style: ElevatedButton.styleFrom(
+        shape: const StadiumBorder(),
+        // ignore: deprecated_member_use
+        primary: Colors.white,
+        // ignore: deprecated_member_use
+        onPrimary: Colors.blue,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+      ),
+      child: const SizedBox(
+        width: double.infinity,
+        child: Text(
+          "Sig in",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
     );
   }
 }
